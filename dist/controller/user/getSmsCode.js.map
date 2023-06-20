@@ -1,0 +1,1 @@
+{"version":3,"file":"getSmsCode.js","sourceRoot":"","sources":["../../../src/controller/user/getSmsCode.ts"],"names":[],"mappings":";;;;;;;;;;;;AACA,0DAAsD;AAE/C,MAAM,UAAU,GAAG,CAAO,GAAgB,EAAE,EAAE;IACjD,MAAM,IAAI,GAAG,IAAA,6BAAa,EAAC,CAAC,CAAC,CAAA;IAC7B,OAAO,CAAC,GAAG,CAAC,IAAI,CAAC,CAAA;AAErB,CAAC,CAAA,CAAA;AAJY,QAAA,UAAU,cAItB"}
