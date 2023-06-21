@@ -1,8 +1,8 @@
 import Router from "koa-router"
-import Koa from "koa"
+import { DefaultState, Context } from "koa"
 import userController from "@src/controller/user"
 
-const routers = new Router()
+const routers = new Router<DefaultState, Context>()
 
 routers.prefix("/user")
 
