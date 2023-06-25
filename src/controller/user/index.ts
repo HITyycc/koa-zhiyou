@@ -1,7 +1,5 @@
-import { login } from "./login"
-import { getSmsCode } from "./getSmsCode"
+import { changeUserInfo } from "@src/controller/user/info"
 
 export default {
-    login,
-    getSmsCode
+    changeUserInfo
 }

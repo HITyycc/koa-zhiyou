@@ -6,7 +6,6 @@ const routers = new Router<DefaultState, Context>()
 
 routers.prefix("/user")
 
-routers.get('/login', userController.login)
-routers.post('/getsmscode', userController.getSmsCode)
+routers.post('/changeuserinfo', userController.changeUserInfo)
 
 export default routers

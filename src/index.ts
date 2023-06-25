@@ -10,11 +10,15 @@ import bodyParser from "koa-bodyparser"
 import logger from "koa-logger"
 import { errorHandler } from "./middleware/errorHandler"
 import { HttpException } from "./middleware/errorHandler"
+import { redisClient } from "./lib/redis"
+import { mysqlClient } from "./lib/mysql"
 
 console.log(`environment is ${process.env.NODE_ENV}`)
 
 const app = new Koa()
-app.context.Error = HttpException
+app.context.customError = HttpException
+app.context.redis = redisClient
+app.context.mysql = mysqlClient
 
 app.use(errorHandler)
 app.use(logger())
