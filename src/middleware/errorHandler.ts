@@ -11,6 +11,7 @@ export const errorHandler = async (ctx: Koa.Context, next: Koa.Next) => {
         }
         ctx.status = 200
     }catch(err){
+        console.error(err)
         if(err instanceof HttpException){
             ctx.status = err.code
             ctx.body = {

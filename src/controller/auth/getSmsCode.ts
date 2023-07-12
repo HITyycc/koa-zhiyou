@@ -21,18 +21,19 @@ export const getSmsCode = async (ctx: Koa.Context) => {
     // 超过一分钟才可以重新获得验证码
     if(resTime > smsCodeExpireTime-smsCodeReGetTime){
         throw new ctx.customError({
+            errorCode: 1,
             message: "get sms code too frequently",
             code: 400
         })
     }
-    const code = codeGenerator(6)
+    const code = codeGenerator(4)
 
     try{
+        console.log(code)
         await smsSender(code, phoneNumber)
         await ctx.redis.set(redisKey, code, "EX", smsCodeExpireTime)
         
     }catch(err){
-        console.log("send")
         console.error(err)
         throw new ctx.customError({
         message: "smsError",
@@ -71,7 +72,7 @@ export const verifySmsCode = async (ctx: Koa.Context) => {
     if(res == null){
         throw new ctx.customError({
             message: "code expired",
-            code: 200,
+            code: 400,
             errorCode: 1
         })
     }
@@ -98,7 +99,7 @@ export const verifySmsCode = async (ctx: Koa.Context) => {
             nickname: (rows[0] as userInfoDb).nickname
         }
         // 赋予token 
-        const jwtToken = generateJwtToken(jwtUserInfo, "300s")
+        const jwtToken = generateJwtToken(jwtUserInfo, "1d")
         ctx.set("Authorization", "Bearer " + jwtToken)
         ctx.body = {
             errorCode: 0,
@@ -108,7 +109,7 @@ export const verifySmsCode = async (ctx: Koa.Context) => {
     }else{
         throw new ctx.customError({
             message: "code not match",
-            code: 200,
+            code: 400,
             errorCode: 2
         })
     }

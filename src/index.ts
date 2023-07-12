@@ -12,6 +12,7 @@ import { errorHandler } from "./middleware/errorHandler"
 import { HttpException } from "./middleware/errorHandler"
 import { redisClient } from "./lib/redis"
 import { mysqlClient } from "./lib/mysql"
+import cors from "@koa/cors"
 
 console.log(`environment is ${process.env.NODE_ENV}`)
 
@@ -21,7 +22,11 @@ app.context.redis = redisClient
 app.context.mysql = mysqlClient
 
 app.use(errorHandler)
+app.use(cors({
+    origin: "http://localhost:19000",
+    exposeHeaders: "Authorization"
+}))
 app.use(logger())
 app.use(bodyParser())
 app.use(routers.routes());
-app.listen(3000);
+app.listen(3010);

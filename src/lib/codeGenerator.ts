@@ -31,7 +31,6 @@ export const smsSender = async (code: string, phoneNumber: string) => {
             signName: Config.get("smsAccess.signName") as string,
             phoneNumbers:phoneNumber
         }
-        console.log(smsRequestProps)
         let sendSmsRequest = new $Dysmsapi20170525.SendSmsRequest(smsRequestProps)
         const res = await smsClient.sendSmsWithOptions(sendSmsRequest, new $Util.RuntimeOptions({ }))
         if(res.body.code !== "OK") throw new Error()

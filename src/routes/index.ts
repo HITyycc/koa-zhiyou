@@ -5,7 +5,6 @@ import { DefaultState, Context } from "koa"
 import jwt from "koa-jwt"
 import Config from "config"
 
-
 const routers = new Router<DefaultState, Context>()
 
 

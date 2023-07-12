@@ -1,6 +1,7 @@
 import Router from "koa-router"
-import { DefaultState, Context } from "koa"
+import { DefaultState, Context, Next } from "koa"
 import authController from "@src/controller/auth"
+import chatController from "@src/controller/chat"
 
 const routers = new Router<DefaultState, Context>()
 
